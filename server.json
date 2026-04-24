@@ -1,0 +1,162 @@
+{
+  "version": "1.0.0",
+  "discord": {
+    "clientId": "000000000000000000",
+    "smallImageText": "MCDC Network",
+    "smallImageKey": "mcdc-small"
+  },
+  "servers": [
+    {
+      "id": "MCDC-AE2Demo-1.21.1-neoforge",
+      "name": "AE2Demo",
+      "description": "Demo paczki MCDC na NeoForge 1.21.1 z Applied Energistics 2 i Mekanism.",
+      "icon": "https://cdn.mcdc.pl/servers/AE2Demo/icon.png",
+      "version": "1.0.0",
+      "address": "play.mcdc.pl:25565",
+      "minecraftVersion": "1.21.1",
+      "mainServer": true,
+      "autoconnect": false,
+      "discord": {
+        "shortId": "AE2Demo",
+        "largeImageKey": "mcdc-large",
+        "largeImageText": "MCDC AE2Demo"
+      },
+      "javaOptions": {
+        "supported": ">=21",
+        "suggestedMajor": 21,
+        "ram": {
+          "recommended": 4096,
+          "minimum": 2048
+        }
+      },
+      "modules": [
+        {
+          "id": "net.neoforged:neoforge:21.1.121",
+          "name": "NeoForge 21.1.121 for Minecraft 1.21.1",
+          "type": "ForgeHosted",
+          "classpath": true,
+          "required": true,
+          "artifact": {
+            "size": 0,
+            "MD5": "0000000000000000000000000",
+            "url": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.121/neoforge-21.1.121-installer.jar",
+            "path": "net/neoforged/neoforge/21.1.121/neoforge-21.1.121-installer.jar"
+          },
+          "subModules": [
+            {
+              "id": "1.21.1-neoforge-21.1.121",
+              "name": "NeoForge Version Manifest - PLACEHOLDER",
+              "type": "VersionManifest",
+              "required": true,
+              "artifact": {
+                "size": 0,
+                "MD5": "0000000000000000000000000",
+                "url": "https://cdn.mcdc.pl/repo/versions/1.21.1-neoforge-21.1.121/1.21.1-neoforge-21.1.121.json"
+              }
+            }
+          ]
+        },
+        {
+          "id": "appeng:appliedenergistics2:19.2.17",
+          "name": "Applied Energistics 2 19.2.17",
+          "type": "ForgeMod",
+          "required": true,
+          "artifact": {
+            "size": 0,
+            "MD5": "0000000000000000000000000",
+            "url": "https://edge.forgecdn.net/files/7027/323/appliedenergistics2-19.2.17.jar"
+          }
+        },
+        {
+          "id": "mekanism:Mekanism:10.7.19.85",
+          "name": "Mekanism 10.7.19.85",
+          "type": "ForgeMod",
+          "required": true,
+          "artifact": {
+            "size": 0,
+            "MD5": "0000000000000000000000000",
+            "url": "https://edge.forgecdn.net/files/7904/058/Mekanism-1.21.1-10.7.19.85.jar"
+          }
+        }
+      ]
+    },
+    {
+      "id": "MCDC-MekanismOptiFineDemo-1.21.1-neoforge",
+      "name": "Mekanism + OptiFine Demo",
+      "description": "Demo paczki MCDC na NeoForge 1.21.1 z Mekanism oraz opcjonalnym OptiFine.",
+      "icon": "https://cdn.mcdc.pl/servers/MekanismOptiFineDemo/icon.png",
+      "version": "1.0.0",
+      "address": "play.mcdc.pl:25566",
+      "minecraftVersion": "1.21.1",
+      "mainServer": false,
+      "autoconnect": false,
+      "discord": {
+        "shortId": "MekOptiDemo",
+        "largeImageKey": "mcdc-large",
+        "largeImageText": "MCDC Mekanism + OptiFine Demo"
+      },
+      "javaOptions": {
+        "supported": ">=21",
+        "suggestedMajor": 21,
+        "ram": {
+          "recommended": 4096,
+          "minimum": 2048
+        }
+      },
+      "modules": [
+        {
+          "id": "net.neoforged:neoforge:21.1.121",
+          "name": "NeoForge 21.1.121 for Minecraft 1.21.1",
+          "type": "ForgeHosted",
+          "classpath": true,
+          "required": true,
+          "artifact": {
+            "size": 0,
+            "MD5": "0000000000000000000000000",
+            "url": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.121/neoforge-21.1.121-installer.jar",
+            "path": "net/neoforged/neoforge/21.1.121/neoforge-21.1.121-installer.jar"
+          },
+          "subModules": [
+            {
+              "id": "1.21.1-neoforge-21.1.121",
+              "name": "NeoForge Version Manifest - PLACEHOLDER",
+              "type": "VersionManifest",
+              "required": true,
+              "artifact": {
+                "size": 0,
+                "MD5": "0000000000000000000000000",
+                "url": "https://cdn.mcdc.pl/repo/versions/1.21.1-neoforge-21.1.121/1.21.1-neoforge-21.1.121.json"
+              }
+            }
+          ]
+        },
+        {
+          "id": "mekanism:Mekanism:10.7.19.85",
+          "name": "Mekanism 10.7.19.85",
+          "type": "ForgeMod",
+          "required": true,
+          "artifact": {
+            "size": 0,
+            "MD5": "0000000000000000000000000",
+            "url": "https://edge.forgecdn.net/files/7904/058/Mekanism-1.21.1-10.7.19.85.jar"
+          }
+        },
+        {
+          "id": "optifine:OptiFine:1.21.1_HD_U_J1",
+          "name": "OptiFine 1.21.1 HD U J1",
+          "type": "ForgeMod",
+          "required": {
+            "value": false,
+            "def": false
+          },
+          "artifact": {
+            "size": 0,
+            "MD5": "0000000000000000000000000",
+            "url": "https://optifine.net/downloadx?f=OptiFine_1.21.1_HD_U_J1.jar",
+            "path": "optifine/OptiFine/1.21.1_HD_U_J1/OptiFine_1.21.1_HD_U_J1.jar"
+          }
+        }
+      ]
+    }
+  ]
+}
