@@ -9,7 +9,7 @@
   "servers": [
     {
       "id": "ATM10-To-the-Sky-1.21.1",
-      "name": "ATM10-To-the-Sky",
+      "name": "ATM10-To-the-Sky (Minecraft 1.21.1)",
       "description": "ATM10-To-the-Sky Running Minecraft 1.21.1",
       "icon": null,
       "version": "2.0.2",
@@ -24,13 +24,14 @@
       "autoconnect": false,
       "modules": [
         {
-          "id": "net.neoforged:neoforge:21.1.221:universal",
+          "id": "net.neoforged:neoforge:21.1.221",
           "name": "NeoForge",
           "type": "NeoForge",
           "artifact": {
             "size": 3527262,
             "url": "http://mcdc.pl/files/libraries/net/neoforged/neoforge/21.1.221/neoforge-21.1.221-universal.jar",
-            "MD5": "2dcf629019d43889aaf6e54cad7bb9de"
+            "MD5": "2dcf629019d43889aaf6e54cad7bb9de",
+            "path": "net/neoforged/neoforge/21.1.221/neoforge-21.1.221-universal.jar"
           },
           "subModules": [
             {
@@ -41,16 +42,6 @@
                 "size": 21148,
                 "url": "http://mcdc.pl/files/versions/neoforge-21.1.221/neoforge-21.1.221.json",
                 "MD5": "c65dcc2d59b6b39dcfa3ae0c43cb54b5"
-              }
-            },
-            {
-              "id": "net.neoforged:neoforge:21.1.221:client@jar",
-              "name": "NeoForge (client jar)",
-              "type": "Library",
-              "artifact": {
-                "size": 5670483,
-                "url": "http://mcdc.pl/files/libraries/net/neoforged/neoforge/21.1.221/neoforge-21.1.221-client.jar",
-                "MD5": "a21d486caacfcb3dd66ce869b9bc74f6"
               }
             },
             {
@@ -522,8 +513,64 @@
                 "url": "http://mcdc.pl/files/libraries/com/machinezoo/noexception/noexception/1.7.1/noexception-1.7.1.jar",
                 "MD5": "fcc3e4df4990088c964f687b62f7c448"
               }
+            },
+            {
+              "id": "net.neoforged:neoforge:21.1.221:client",
+              "name": "NeoForge (client jar)",
+              "type": "Library",
+              "classpath": false,
+              "artifact": {
+                "size": 5670483,
+                "url": "http://mcdc.pl/files/libraries/net/neoforged/neoforge/21.1.221/neoforge-21.1.221-client.jar",
+                "MD5": "a21d486caacfcb3dd66ce869b9bc74f6"
+              }
+            },
+            {
+              "id": "net.minecraft:client:1.21.1-20240808.144430:slim",
+              "name": "NeoForge (minecraft client slim)",
+              "type": "Library",
+              "classpath": false,
+              "artifact": {
+                "size": 14464635,
+                "url": "http://mcdc.pl/files/libraries/net/minecraft/client/1.21.1-20240808.144430/client-1.21.1-20240808.144430-slim.jar",
+                "MD5": "21a31126d805df21389e0b2ff8cb7411"
+              }
+            },
+            {
+              "id": "net.minecraft:client:1.21.1-20240808.144430:extra",
+              "name": "NeoForge (minecraft client extra)",
+              "type": "Library",
+              "classpath": false,
+              "artifact": {
+                "size": 12372293,
+                "url": "http://mcdc.pl/files/libraries/net/minecraft/client/1.21.1-20240808.144430/client-1.21.1-20240808.144430-extra.jar",
+                "MD5": "973b9700852b66bb7b74df75b0113db2"
+              }
+            },
+            {
+              "id": "net.minecraft:client:1.21.1-20240808.144430:srg",
+              "name": "NeoForge (minecraft client srg)",
+              "type": "Library",
+              "classpath": false,
+              "artifact": {
+                "size": 18725656,
+                "url": "http://mcdc.pl/files/libraries/net/minecraft/client/1.21.1-20240808.144430/client-1.21.1-20240808.144430-srg.jar",
+                "MD5": "24d790d385dff0146020f1875b969e52"
+              }
+            },
+            {
+              "id": "net.minecraft:client:1.21.1-20240808.144430:mappings@txt",
+              "name": "NeoForge (minecraft client mappings)",
+              "type": "Library",
+              "classpath": false,
+              "artifact": {
+                "size": 9598610,
+                "url": "http://mcdc.pl/files/libraries/net/minecraft/client/1.21.1-20240808.144430/client-1.21.1-20240808.144430-mappings.txt",
+                "MD5": "ea40af7f628e9e39334b5c4fb0f031d0"
+              }
             }
-          ]
+          ],
+          "classpath": true
         },
         {
           "id": "allthetweaks-common.toml",
