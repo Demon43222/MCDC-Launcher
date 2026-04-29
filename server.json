@@ -513,18 +513,7 @@
                 "url": "http://mcdc.pl/files/libraries/com/machinezoo/noexception/noexception/1.7.1/noexception-1.7.1.jar",
                 "MD5": "fcc3e4df4990088c964f687b62f7c448"
               }
-            },
-            {
-              "id": "net.neoforged:neoforge:21.1.221:client",
-              "name": "NeoForge (client)",
-              "type": "Library",
-              "artifact": {
-                "size": 5670483,
-                "url": "http://mcdc.pl/files/libraries/net/neoforged/neoforge/21.1.221/neoforge-21.1.221-client.jar",
-                "MD5": "a21d486caacfcb3dd66ce869b9bc74f6"
-              },
-              "classpath": true
-            },
+            }
           ],
           "classpath": true
         },
