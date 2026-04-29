@@ -4,12 +4,12 @@
   "productName": "MCDC.pl Launcher",
   "description": "MCDC.pl Minecraft Launcher",
   "author": "MCDC.pl",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "homepage": "https://mcdc.pl",
   "bugs": {
     "url": "https://github.com/Demon43222/MCDC-Launcher/issues"
   },
-  "private": true,
+  "private": false,
   "main": "index.js",
   "scripts": {
     "start": "electron .",
