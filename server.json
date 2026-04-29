@@ -45,17 +45,6 @@
               }
             },
             {
-              "id": "net.neoforged:neoforge:21.1.221:client",
-              "name": "NeoForge (client)",
-              "type": "Library",
-              "classpath": false,
-              "artifact": {
-                "size": 5670483,
-                "url": "http://mcdc.pl/files/libraries/net/neoforged/neoforge/21.1.221/neoforge-21.1.221-client.jar",
-                "MD5": "a21d486caacfcb3dd66ce869b9bc74f6"
-              }
-            },
-            {
               "id": "net.neoforged.fancymodloader:earlydisplay:4.0.42@jar",
               "name": "NeoForge (earlydisplay)",
               "type": "Library",
