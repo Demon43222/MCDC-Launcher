@@ -551,7 +551,7 @@
               "id": "net.minecraft:client:1.21.1-20240808.144430:srg",
               "name": "NeoForge (minecraft client srg)",
               "type": "Library",
-              "classpath": false,
+              "classpath": true,
               "artifact": {
                 "size": 18725656,
                 "url": "http://mcdc.pl/files/libraries/net/minecraft/client/1.21.1-20240808.144430/client-1.21.1-20240808.144430-srg.jar",
