@@ -1,0 +1,9 @@
+{
+  "name": "demciak-core",
+  "version": "2.3.0-demciak.1",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "helios-core": "~2.3.0"
+  }
+}

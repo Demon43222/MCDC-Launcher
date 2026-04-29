@@ -1,0 +1,298 @@
+[ejs.landing]
+updateAvailableTooltip = "Dostępna aktualizacja"
+usernamePlaceholder = "Nazwa gracza"
+usernameEditButton = "Edytuj"
+serverStatus = "SERWER"
+serverStatusPlaceholder = "OFFLINE"
+discordStatus = "DISCORD"
+discordJoin = "..."
+mediaWebsiteURL = "#"
+mediaYouTubeURL = "#"
+mediaTikTokURL = "#"
+launchButton = "GRAJ"
+launchButtonPlaceholder = "&#8226; Nie wybrano serwera"
+launchDetails = "Proszę czekać..."
+
+[ejs.login]
+loginCancelText = "Anuluj"
+loginSubheader = "LOGOWANIE OFFLINE"
+loginUsernameLabel = "Wpisz nick, pod którym chcesz grać"
+loginEmailError = "* Nick musi mieć 5-16 znaków"
+loginEmailPlaceholder = "NICK GRACZA"
+loginButtonText = "DALEJ"
+
+[ejs.loginOptions]
+loginOptionsTitle = "Opcje logowania"
+loginWithMicrosoft = "Zaloguj przez Microsoft"
+loginWithOffline = "Zaloguj offline"
+cancelButton = "Anuluj"
+
+[ejs.overlay]
+serverSelectHeader = "Dostępne serwery"
+serverSelectConfirm = "Wybierz"
+serverSelectCancel = "Anuluj"
+accountSelectHeader = "Wybierz konto"
+accountSelectConfirm = "Wybierz"
+accountSelectCancel = "Anuluj"
+
+[ejs.settings]
+navHeaderText = "Ustawienia"
+navAccount = "Konto"
+navMinecraft = "Minecraft"
+navMods = "Mody"
+navJava = "Java"
+navLauncher = "Launcher"
+navAbout = "O programie"
+navUpdates = "Aktualizacje"
+navDone = "Gotowe"
+tabAccountHeaderText = "Ustawienia konta"
+tabAccountHeaderDesc = "Dodawaj nowe konta i zarządzaj istniejącymi."
+microsoftAccount = "Microsoft"
+addMicrosoftAccount = "+ Dodaj konto Microsoft"
+offlineAccount = "Offline"
+addOfflineAccount = "+ Dodaj konto offline"
+minecraftTabHeaderText = "Ustawienia Minecrafta"
+minecraftTabHeaderDesc = "Opcje związane z uruchamianiem gry."
+gameResolutionTitle = "Rozdzielczość gry"
+launchFullscreenTitle = "Uruchamiaj w trybie pełnoekranowym."
+autoConnectTitle = "Automatycznie łącz z serwerem po uruchomieniu."
+launchDetachedTitle = "Uruchamiaj proces gry niezależnie od launchera."
+launchDetachedDesc = "Jeśli gra nie działa niezależnie, zamknięcie launchera zamknie również grę."
+tabModsHeaderText = "Ustawienia modów"
+tabModsHeaderDesc = "Włączaj i wyłączaj mody."
+switchServerButton = "Zmień"
+requiredMods = "Wymagane mody"
+optionalMods = "Opcjonalne mody"
+dropinMods = "Mody własne"
+addMods = "Dodaj mody"
+dropinRefreshNote = "(F5, aby odświeżyć)"
+shaderpacks = "Shadery"
+shaderpackDesc = "Włączaj i wyłączaj shadery. Pamiętaj, że shadery działają płynnie tylko na mocniejszych komputerach. Tutaj możesz dodać własne paczki."
+selectShaderpack = "Wybierz paczkę shaderów"
+tabJavaHeaderText = "Ustawienia Javy"
+tabJavaHeaderDesc = "Zarządzaj konfiguracją Javy (zaawansowane)."
+memoryTitle = "Pamięć"
+maxRAM = "Maksymalny RAM"
+minRAM = "Minimalny RAM"
+memoryDesc = "Zalecane minimum pamięci RAM to 3 GB. Ustawienie tej samej wartości minimalnej i maksymalnej może ograniczyć przycięcia."
+memoryTotalTitle = "Łącznie"
+memoryAvailableTitle = "Dostępne"
+javaExecutableTitle = "Plik wykonywalny Javy"
+javaExecSelDialogTitle = "Wybierz plik wykonywalny Javy"
+javaExecSelButtonText = "Wybierz plik"
+javaExecDesc = "Plik wykonywalny Javy jest sprawdzany przed uruchomieniem gry."
+javaPathDesc = "Ścieżka powinna kończyć się na <strong>{pathSuffix}</strong>."
+jvmOptsTitle = "Dodatkowe opcje JVM"
+jvmOptsDesc = "Opcje przekazywane do JVM przy uruchomieniu. Nie wpisuj tutaj <em>-Xms</em> ani <em>-Xmx</em>."
+launcherTabHeaderText = "Ustawienia launchera"
+launcherTabHeaderDesc = "Opcje związane z samym launcherem."
+allowPrereleaseTitle = "Zezwalaj na aktualizacje przedpremierowe."
+allowPrereleaseDesc = "Wersje przedpremierowe zawierają nowe funkcje, które mogły nie zostać w pełni przetestowane.<br>Ta opcja zawsze będzie aktywna, jeśli używasz wersji przedpremierowej."
+dataDirectoryTitle = "Katalog danych"
+selectDataDirectory = "Wybierz katalog danych"
+chooseFolder = "Wybierz folder"
+dataDirectoryDesc = "Wszystkie pliki gry i lokalne instalacje Javy będą przechowywane w katalogu danych.<br>Zrzuty ekranu i zapisy światów znajdują się w folderze instancji dla wybranej konfiguracji serwera."
+aboutTabHeaderText = "O programie"
+aboutTabHeaderDesc = "Zobacz informacje i listę zmian bieżącej wersji."
+aboutTitle = "{appName}"
+stableRelease = "Wersja stabilna"
+versionText = "Wersja "
+devToolsConsole = "Konsola DevTools"
+noReleaseNotes = "Brak informacji o wydaniu"
+launcherUpdatesHeaderText = "Aktualizacje launchera"
+launcherUpdatesHeaderDesc = "Pobieraj, instaluj i sprawdzaj aktualizacje launchera."
+checkForUpdates = "Sprawdź aktualizacje"
+whatsNew = "Co nowego"
+updateReleaseNotes = "Informacje o aktualizacji"
+
+[ejs.waiting]
+waitingText = "Oczekiwanie na Microsoft..."
+
+[ejs.welcome]
+continueButton = "DALEJ"
+
+[js.discord]
+waiting = "Oczekiwanie na klienta..."
+state = "Serwer: {shortId}"
+unknownServer = "Nieznany serwer"
+
+[js.index]
+microsoftLoginTitle = "Logowanie Microsoft"
+microsoftLogoutTitle = "Wylogowanie Microsoft"
+
+[js.login]
+login = "DALEJ"
+loggingIn = "DODAWANIE"
+success = "GOTOWE"
+tryAgain = "Spróbuj ponownie"
+
+[js.login.error]
+invalidValue = "* Tylko litery, cyfry i _; 5-16 znaków"
+requiredValue = "* Wymagane"
+
+[js.login.error.unknown]
+title = "Nieznany błąd podczas logowania"
+desc = "Wystąpił nieznany błąd. Szczegóły znajdziesz w konsoli."
+
+[js.landing.launch]
+pleaseWait = "Proszę czekać..."
+failureTitle = "Błąd podczas uruchamiania"
+failureText = "Więcej szczegółów znajdziesz w konsoli (CTRL + Shift + I)."
+okay = "OK"
+
+[js.landing.selectedAccount]
+noAccountSelected = "Nie wybrano konta"
+
+[js.landing.selectedServer]
+noSelection = "Nie wybrano serwera"
+loading = "Ładowanie..."
+
+[js.landing.serverStatus]
+server = "SERWER"
+offline = "OFFLINE"
+players = "GRACZE"
+
+[js.landing.systemScan]
+checking = "Sprawdzanie systemu..."
+noCompatibleJava = "Nie znaleziono zgodnej<br>instalacji Javy"
+installJavaMessage = "Aby uruchomić Minecrafta, potrzebujesz 64-bitowej instalacji Javy {major}. Czy launcher ma ją zainstalować?"
+installJava = "Zainstaluj Javę"
+installJavaManually = "Zainstaluj ręcznie"
+javaDownloadPrepare = "Przygotowywanie pobierania Javy..."
+javaDownloadFailureTitle = "Błąd podczas pobierania Javy"
+javaDownloadFailureText = "Więcej szczegółów znajdziesz w konsoli (CTRL + Shift + I)."
+javaRequired = "Java jest wymagana<br>do uruchomienia gry"
+javaRequiredMessage = 'Do uruchomienia gry wymagana jest poprawna instalacja Java {major} x64.'
+javaRequiredDismiss = "Rozumiem"
+javaRequiredCancel = "Wróć"
+
+[js.landing.downloadJava]
+findJdkFailure = "Nie udało się znaleźć dystrybucji OpenJDK."
+javaDownloadCorruptedError = "Pobrany JDK ma nieprawidłowy hash. Plik może być uszkodzony."
+extractingJava = "Rozpakowywanie Javy"
+javaInstalled = "Java zainstalowana!"
+
+[js.landing.dlAsync]
+loadingServerInfo = "Ładowanie informacji o serwerze..."
+fatalError = "Błąd krytyczny"
+unableToLoadDistributionIndex = "Nie udało się wczytać kopii indeksu dystrybucji. Więcej szczegółów znajdziesz w konsoli (CTRL + Shift + I)."
+pleaseWait = "Proszę czekać..."
+errorDuringLaunchTitle = "Błąd podczas uruchamiania"
+seeConsoleForDetails = "Więcej szczegółów znajdziesz w konsoli (CTRL + Shift + I)."
+validatingFileIntegrity = "Sprawdzanie integralności plików..."
+errorDuringFileVerificationTitle = "Błąd podczas weryfikacji plików"
+downloadingFiles = "Pobieranie plików..."
+errorDuringFileDownloadTitle = "Błąd podczas pobierania plików"
+preparingToLaunch = "Przygotowywanie uruchomienia..."
+launchingGame = "Uruchamianie gry..."
+launchWrapperNotDownloaded = "Główny plik LaunchWrapper nie został poprawnie pobrany, dlatego gra nie może zostać uruchomiona.<br><br>Aby rozwiązać problem, tymczasowo wyłącz program antywirusowy i uruchom grę ponownie.<br><br>Jeśli masz chwilę, zgłoś problem na GitHubie i napisz, jakiego programu antywirusowego używasz."
+doneEnjoyServer = "Gotowe. Miłej gry na serwerze!"
+checkConsoleForDetails = "Sprawdź konsolę (CTRL + Shift + I), aby zobaczyć szczegóły."
+
+
+[js.landing.discord]
+loading = "Ładowanie gry..."
+joining = "Dołączanie do świata technologii!"
+joined = "Rozwijanie technologii!"
+unknownMembers = "—"
+
+[js.overlay]
+dismiss = "Zamknij"
+
+[js.settings.fileSelectors]
+executables = "Pliki wykonywalne"
+allFiles = "Wszystkie pliki"
+
+[js.settings.mstfLogin]
+errorTitle = "Coś poszło nie tak"
+errorMessage = "Uwierzytelnianie Microsoft nie powiodło się. Spróbuj ponownie."
+okButton = "OK"
+
+[js.settings.mstfLogout]
+errorTitle = "Coś poszło nie tak"
+errorMessage = "Wylogowanie z Microsoft nie powiodło się. Spróbuj ponownie."
+okButton = "OK"
+
+[js.settings.msftLogin]
+errorTitle = "Logowanie Microsoft nie powiodło się"
+errorMessage = "Nie udało się uwierzytelnić konta Microsoft. Spróbuj ponownie."
+okButton = "OK"
+
+[js.settings.msftLogout]
+errorTitle = "Wylogowanie Microsoft nie powiodło się"
+errorMessage = "Nie udało się wylogować z konta Microsoft. Spróbuj ponownie."
+okButton = "OK"
+
+[js.settings.authAccountSelect]
+selectButton = "Wybierz konto"
+selectedButton = "Wybrane konto &#10004;"
+
+[js.settings.authAccountLogout]
+lastAccountWarningTitle = "Uwaga<br>To jest Twoje ostatnie konto"
+lastAccountWarningMessage = "Aby korzystać z launchera, musisz mieć dodane co najmniej jedno konto. Po wylogowaniu trzeba będzie zalogować się ponownie.<br><br>Czy na pewno chcesz się wylogować?"
+confirmButton = "Tak, na pewno"
+cancelButton = "Anuluj"
+
+[js.settings.authAccountPopulate]
+username = "Nazwa gracza"
+uuid = "UUID"
+selectAccount = "Wybierz konto"
+selectedAccount = "Wybrane konto &#10004;"
+logout = "Wyloguj"
+
+[js.settings.dropinMods]
+removeButton = "Usuń"
+deleteFailedTitle = "Nie udało się usunąć<br>moda {fullName}"
+deleteFailedMessage = "Upewnij się, że plik nie jest używany, i spróbuj ponownie."
+failedToggleTitle = "Nie udało się przełączyć<br>jednego lub kilku modów"
+okButton = "OK"
+
+[js.settings.serverListing]
+mainServer = "Główny serwer"
+
+[js.settings.java]
+selectedJava = "Wybrano: Java {version} ({vendor})"
+invalidSelection = "Nieprawidłowy wybór"
+requiresJava = "Wymaga Java {major} x64."
+availableOptions = "Dostępne opcje dla Java {major} (HotSpot VM)"
+
+[js.settings.about]
+preReleaseTitle = "Wersja przedpremierowa"
+stableReleaseTitle = "Wersja stabilna"
+
+[js.settings.updates]
+newReleaseTitle = "Dostępna nowa wersja"
+newPreReleaseTitle = "Dostępna nowa wersja przedpremierowa"
+downloadingButton = "Pobieranie..."
+latestVersionTitle = "Używasz najnowszej wersji"
+checkForUpdatesButton = "Sprawdź aktualizacje"
+checkingForUpdatesButton = "Sprawdzanie aktualizacji..."
+
+[js.uibinder.startup]
+fatalErrorTitle = "Błąd krytyczny: nie można wczytać indeksu dystrybucji"
+fatalErrorMessage = "Nie udało się połączyć z serwerami, aby pobrać indeks dystrybucji, a lokalna kopia nie była dostępna.<br><br>Indeks dystrybucji jest niezbędny, ponieważ zawiera najnowsze informacje o serwerach. Launcher nie może wystartować bez tego pliku. Upewnij się, że masz połączenie z internetem, i uruchom aplikację ponownie."
+closeButton = "Zamknij"
+
+[js.uibinder.validateAccount]
+failedMessageTitle = "Nie udało się odświeżyć logowania"
+failedMessage = "Nie udało się odświeżyć logowania dla konta <strong>{account}</strong>. Wybierz inne konto albo zaloguj się ponownie."
+failedMessageSelectAnotherAccount = "Nie udało się odświeżyć logowania dla konta <strong>{account}</strong>. Zaloguj się ponownie."
+loginButton = "Zaloguj"
+selectAnotherAccountButton = "Wybierz inne konto"
+
+[js.uicore.autoUpdate]
+checkingForUpdateButton = "Sprawdzanie aktualizacji..."
+installNowButton = "Zainstaluj teraz"
+checkForUpdatesButton = "Sprawdź aktualizacje"
+
+[js.auth.microsoft.error]
+noProfileTitle = "Błąd logowania:<br>Profil nie jest skonfigurowany"
+noProfileDesc = "Twoje konto Microsoft nie ma jeszcze skonfigurowanego profilu Minecraft. Jeśli niedawno kupiono grę albo odebrano ją przez Xbox Game Pass, skonfiguruj profil na <a href=\"https://minecraft.net/\">Minecraft.net</a>.<br><br>Jeśli gra nie została jeszcze kupiona, możesz zrobić to również na <a href=\"https://minecraft.net/\">Minecraft.net</a>."
+noXboxAccountTitle = "Błąd logowania:<br>Brak konta Xbox"
+noXboxAccountDesc = "Z Twoim kontem Microsoft nie jest powiązane żadne konto Xbox."
+xblBannedTitle = "Błąd logowania:<br>Xbox Live niedostępny"
+xblBannedDesc = "Twoje konto Microsoft pochodzi z kraju, w którym Xbox Live jest niedostępny lub zablokowany."
+under18Title = "Błąd logowania:<br>Wymagana zgoda rodzica"
+under18Desc = "Konta użytkowników poniżej 18 roku życia muszą zostać dodane do rodziny przez osobę dorosłą."
+unknownTitle = "Nieznany błąd podczas logowania"
+unknownDesc = "Wystąpił nieznany błąd. Szczegóły znajdziesz w konsoli."

@@ -1,0 +1,59 @@
+appId: 'pl.mcdc.launcher'
+productName: 'MCDC.pl Launcher'
+artifactName: 'MCDC.pl-Launcher-setup-${version}.${ext}'
+
+copyright: 'Copyright © 2026 MCDC.pl'
+
+asar: true
+compression: 'maximum'
+
+files:
+  - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,eslint.config.mjs}'
+
+extraResources:
+  - 'libraries'
+
+# Windows Configuration
+win: 
+  signAndEditExecutable: false
+  target: 
+    - target: 'nsis'
+      arch: 'x64'
+
+# Windows Installer Configuration
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+
+# macOS Configuration
+mac:
+  target:
+    - target: 'dmg'
+      arch:
+        - 'x64'
+        - 'arm64'
+  artifactName: 'MCDC.pl-Launcher-setup-${version}-${arch}.${ext}'
+  category: 'public.app-category.games'
+
+# Linux Configuration
+linux: 
+  target: 'AppImage'
+  maintainer: 'MCDC.pl'
+  vendor: 'MCDC.pl'
+  synopsis: 'Launcher Minecraft dla MCDC.pl'
+  description: 'Launcher Minecraft z logowaniem Microsoft i offline, wyborem paczek oraz automatycznym pobieraniem plików.'
+  category: 'Game'
+
+
+directories:
+  buildResources: 'build'
+  output: 'dist'
+
+publish:
+  provider: 'github'
+  owner: 'Demon43222'
+  repo: 'MCDC-Launcher'
+  vPrefixedTagName: true
+  publishAutoUpdate: true

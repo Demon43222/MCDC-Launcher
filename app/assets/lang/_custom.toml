@@ -1,0 +1,25 @@
+# Niestandardowy plik językowy konfiguratora launchera
+
+[ejs.app]
+title = "MCDC.pl Launcher"
+
+[ejs.landing]
+mediaWebsiteURL = "https://mcdc.pl/"
+mediaYouTubeURL = "#"
+mediaTikTokURL = "#"
+mediaDiscordURL = "https://discord.gg/uqaSjVkZ7r"
+
+[ejs.welcome]
+welcomeHeader = "WITAJ W MCDC.PL"
+welcomeDescription = """Witaj w świecie, gdzie wszystko zaczyna się od jednego pomysłu.
+
+Tutaj technologia nie jest dodatkiem. Jest podstawą.
+Każda maszyna, każdy system i każda decyzja przybliża Cię do stworzenia czegoś większego.
+Z małych konstrukcji powstają rozbudowane fabryki.
+Z prostych rozwiązań rodzą się potężne układy.
+
+Nie znajdziesz tu gotowej drogi.
+To Ty ją tworzysz.
+
+Wejdź i sprawdź, jak daleko możesz zajść."""
+welcomeDescCTA = ""

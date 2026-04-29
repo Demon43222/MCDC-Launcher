@@ -1,0 +1,13 @@
+/node_modules/
+/.vs/
+/.vscode/
+/target/
+/logs/
+/dist/
+/.codex-tools/
+/.neoforge-install-test/
+/Nebula/
+/NebulaRoot/
+*.log
+*.tmp
+*.bak

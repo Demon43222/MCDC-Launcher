@@ -1,0 +1,203 @@
+{
+  "version": "0.1.0",
+  "rss": "",
+  "discord": {
+    "clientId": "1496197193739145366",
+    "smallImageKey": "big",
+    "smallImageText": "MCDC.pl"
+  },
+  "servers": [
+    {
+      "id": "MCDC-NEOFORGE-AE2-MEK-1.21.1",
+      "name": "MCDC.pl NeoForge AE2 + Mekanism",
+      "description": "NeoForge 1.21.1 with AE2 19.2.17 and Mekanism 10.7.19.85",
+      "icon": "https://cdn.mcdc.pl/servers/MCDC-NEOFORGE-AE2-MEK-1.21.1/icon.png",
+      "version": "0.1.0-test",
+      "address": "play.mcdc.pl:25565",
+      "minecraftVersion": "1.21.1",
+      "mainServer": true,
+      "autoconnect": false,
+      "discord": {
+        "shortId": "AE2 + Mek",
+        "largeImageKey": "mcdc",
+        "largeImageText": "NeoForge 21.1.121"
+      },
+      "javaOptions": {
+        "supported": [
+          "21.x"
+        ],
+        "suggestedMajor": 21,
+        "distribution": "temurin",
+        "ram": {
+          "recommendedMin": 6144,
+          "recommendedMax": 8192
+        }
+      },
+      "modules": [
+        {
+          "id": "net.neoforged:neoforge:21.1.121",
+          "name": "NeoForge 21.1.121",
+          "type": "NeoForge",
+          "classpath": true,
+          "artifact": {
+            "size": 0,
+            "MD5": "REPLACE_WITH_REAL_MD5",
+            "url": "https://cdn.mcdc.pl/repo/lib/net/neoforged/neoforge/21.1.121/neoforge-21.1.121.jar"
+          },
+          "subModules": [
+            {
+              "id": "1.21.1-neoforge-21.1.121",
+              "name": "NeoForge Version Manifest",
+              "type": "VersionManifest",
+              "artifact": {
+                "size": 0,
+                "MD5": "REPLACE_WITH_REAL_MD5",
+                "url": "https://cdn.mcdc.pl/repo/versions/1.21.1-neoforge-21.1.121/1.21.1-neoforge-21.1.121.json"
+              }
+            },
+            {
+              "id": "net.neoforged:neoforge:21.1.121:client",
+              "name": "NeoForge Client Library",
+              "type": "Library",
+              "classpath": false,
+              "artifact": {
+                "size": 0,
+                "MD5": "REPLACE_WITH_REAL_MD5",
+                "url": "https://cdn.mcdc.pl/repo/lib/net/neoforged/neoforge/21.1.121/neoforge-21.1.121-client.jar"
+              }
+            }
+          ]
+        },
+        {
+          "id": "appeng:appliedenergistics2:19.2.17@jar",
+          "name": "Applied Energistics 2 19.2.17",
+          "type": "NeoForgeMod",
+          "artifact": {
+            "size": 0,
+            "MD5": "REPLACE_WITH_REAL_MD5",
+            "url": "https://cdn.mcdc.pl/servers/MCDC-NEOFORGE-AE2-MEK-1.21.1/mods/appliedenergistics2-19.2.17.jar"
+          }
+        },
+        {
+          "id": "mekanism:Mekanism:10.7.19.85@jar",
+          "name": "Mekanism 10.7.19.85",
+          "type": "NeoForgeMod",
+          "artifact": {
+            "size": 0,
+            "MD5": "REPLACE_WITH_REAL_MD5",
+            "url": "https://cdn.mcdc.pl/servers/MCDC-NEOFORGE-AE2-MEK-1.21.1/mods/Mekanism-1.21.1-10.7.19.85.jar"
+          }
+        },
+        {
+          "id": "options.txt",
+          "name": "options.txt",
+          "type": "File",
+          "artifact": {
+            "size": 0,
+            "MD5": "REPLACE_WITH_REAL_MD5",
+            "url": "https://cdn.mcdc.pl/servers/MCDC-NEOFORGE-AE2-MEK-1.21.1/files/options.txt",
+            "path": "options.txt"
+          }
+        }
+      ]
+    },
+    {
+      "id": "MCDC-NEOFORGE-AE2-SPARK-1.21.1",
+      "name": "MCDC.pl NeoForge AE2 + Spark",
+      "description": "NeoForge 1.21.1 with AE2 19.2.17 and optional spark 1.10.124",
+      "icon": "https://cdn.mcdc.pl/servers/MCDC-NEOFORGE-AE2-SPARK-1.21.1/icon.png",
+      "version": "0.1.0-test",
+      "address": "play.mcdc.pl:25565",
+      "minecraftVersion": "1.21.1",
+      "mainServer": false,
+      "autoconnect": false,
+      "discord": {
+        "shortId": "AE2 + Spark",
+        "largeImageKey": "mcdc",
+        "largeImageText": "NeoForge 21.1.121"
+      },
+      "javaOptions": {
+        "supported": [
+          "21.x"
+        ],
+        "suggestedMajor": 21,
+        "distribution": "temurin",
+        "ram": {
+          "recommendedMin": 6144,
+          "recommendedMax": 8192
+        }
+      },
+      "modules": [
+        {
+          "id": "net.neoforged:neoforge:21.1.121",
+          "name": "NeoForge 21.1.121",
+          "type": "NeoForge",
+          "classpath": true,
+          "artifact": {
+            "size": 0,
+            "MD5": "REPLACE_WITH_REAL_MD5",
+            "url": "https://cdn.mcdc.pl/repo/lib/net/neoforged/neoforge/21.1.121/neoforge-21.1.121.jar"
+          },
+          "subModules": [
+            {
+              "id": "1.21.1-neoforge-21.1.121",
+              "name": "NeoForge Version Manifest",
+              "type": "VersionManifest",
+              "artifact": {
+                "size": 0,
+                "MD5": "REPLACE_WITH_REAL_MD5",
+                "url": "https://cdn.mcdc.pl/repo/versions/1.21.1-neoforge-21.1.121/1.21.1-neoforge-21.1.121.json"
+              }
+            },
+            {
+              "id": "net.neoforged:neoforge:21.1.121:client",
+              "name": "NeoForge Client Library",
+              "type": "Library",
+              "classpath": false,
+              "artifact": {
+                "size": 0,
+                "MD5": "REPLACE_WITH_REAL_MD5",
+                "url": "https://cdn.mcdc.pl/repo/lib/net/neoforged/neoforge/21.1.121/neoforge-21.1.121-client.jar"
+              }
+            }
+          ]
+        },
+        {
+          "id": "appeng:appliedenergistics2:19.2.17@jar",
+          "name": "Applied Energistics 2 19.2.17",
+          "type": "NeoForgeMod",
+          "artifact": {
+            "size": 0,
+            "MD5": "REPLACE_WITH_REAL_MD5",
+            "url": "https://cdn.mcdc.pl/servers/MCDC-NEOFORGE-AE2-SPARK-1.21.1/mods/appliedenergistics2-19.2.17.jar"
+          }
+        },
+        {
+          "id": "me.lucko:spark:1.10.124@jar",
+          "name": "spark 1.10.124",
+          "type": "NeoForgeMod",
+          "required": {
+            "value": false,
+            "def": false
+          },
+          "artifact": {
+            "size": 0,
+            "MD5": "REPLACE_WITH_REAL_MD5",
+            "url": "https://cdn.mcdc.pl/servers/MCDC-NEOFORGE-AE2-SPARK-1.21.1/mods/spark-1.10.124-neoforge.jar"
+          }
+        },
+        {
+          "id": "options.txt",
+          "name": "options.txt",
+          "type": "File",
+          "artifact": {
+            "size": 0,
+            "MD5": "REPLACE_WITH_REAL_MD5",
+            "url": "https://cdn.mcdc.pl/servers/MCDC-NEOFORGE-AE2-SPARK-1.21.1/files/options.txt",
+            "path": "options.txt"
+          }
+        }
+      ]
+    }
+  ]
+}

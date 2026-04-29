@@ -1,0 +1,5 @@
+provider: github
+owner: Demon43222
+repo: MCDC-Launcher
+vPrefixedTagName: true
+updaterCacheDirName: mcdc-pl-launcher-updater

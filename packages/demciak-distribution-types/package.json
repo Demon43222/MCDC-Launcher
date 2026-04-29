@@ -1,0 +1,9 @@
+{
+  "name": "demciak-distribution-types",
+  "version": "1.3.0-demciak.1",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "helios-distribution-types": "^1.3.0"
+  }
+}
