@@ -42,6 +42,7 @@ class ProcessBuilder {
 
         this.usingLiteLoader = false
         this.usingFabricLoader = false
+        this.usingNeoForgeLoader = false
         this.llPath = null
     }
     
@@ -56,6 +57,9 @@ class ProcessBuilder {
         logger.info('Using liteloader:', this.usingLiteLoader)
         this.usingFabricLoader = this.server.modules.some(mdl => mdl.rawModule.type === Type.Fabric)
         logger.info('Using fabric loader:', this.usingFabricLoader)
+        this.usingNeoForgeLoader = this.server.modules.some(mdl => mdl.rawModule.type === Type.NeoForge)
+        logger.info('Using neoforge loader:', this.usingNeoForgeLoader)
+        this.ensureNeoForgeGeneratedArtifacts()
         const modObj = this.resolveModConfiguration(ConfigManager.getModConfiguration(this.server.rawServer.id).mods, this.server.modules)
         
         // Mod list below 1.13
@@ -706,6 +710,64 @@ class ProcessBuilder {
         this._processClassPathList(cpArgs)
 
         return cpArgs
+    }
+
+    ensureNeoForgeGeneratedArtifacts(){
+        if(!this.usingNeoForgeLoader || this.modManifest == null || this.modManifest.arguments == null){
+            return
+        }
+
+        const gameArgs = Array.isArray(this.modManifest.arguments.game) ? this.modManifest.arguments.game : []
+        const neoFormIndex = gameArgs.indexOf('--fml.neoFormVersion')
+        const neoForgeIndex = gameArgs.indexOf('--fml.neoForgeVersion')
+        const neoFormVersion = neoFormIndex > -1 ? gameArgs[neoFormIndex + 1] : null
+        const neoForgeVersion = neoForgeIndex > -1 ? gameArgs[neoForgeIndex + 1] : null
+        const minecraftVersion = this.server.rawServer.minecraftVersion
+
+        const officialLibraries = path.join(os.homedir(), 'AppData', 'Roaming', '.minecraft', 'libraries')
+
+        if(neoFormVersion != null){
+            const mcArtifactVersion = `${minecraftVersion}-${neoFormVersion}`
+            this.copyNeoForgeGeneratedArtifactDir(
+                path.join(officialLibraries, 'net', 'minecraft', 'client', mcArtifactVersion),
+                path.join(this.libPath, 'net', 'minecraft', 'client', mcArtifactVersion),
+                `Minecraft client ${mcArtifactVersion}`
+            )
+        }
+
+        if(neoForgeVersion != null){
+            this.copyNeoForgeGeneratedArtifactFile(
+                path.join(officialLibraries, 'net', 'neoforged', 'neoforge', neoForgeVersion, `neoforge-${neoForgeVersion}-client.jar`),
+                path.join(this.libPath, 'net', 'neoforged', 'neoforge', neoForgeVersion, `neoforge-${neoForgeVersion}-client.jar`),
+                `NeoForge patched client ${neoForgeVersion}`
+            )
+        }
+    }
+
+    copyNeoForgeGeneratedArtifactDir(source, target, label){
+        if(!fs.existsSync(source)){
+            logger.warn(`${label} is missing in launcher libraries and official Minecraft libraries. Run the matching NeoForge installer once, then start this instance again.`)
+            return
+        }
+
+        fs.ensureDirSync(path.dirname(target))
+        fs.copySync(source, target, { overwrite: false, errorOnExist: false })
+        logger.info(`Ensured ${label} exists in launcher libraries.`)
+    }
+
+    copyNeoForgeGeneratedArtifactFile(source, target, label){
+        if(fs.existsSync(target)){
+            return
+        }
+
+        if(!fs.existsSync(source)){
+            logger.warn(`${label} is missing in launcher libraries and official Minecraft libraries. Run the matching NeoForge installer once, then start this instance again.`)
+            return
+        }
+
+        fs.ensureDirSync(path.dirname(target))
+        fs.copyFileSync(source, target)
+        logger.info(`Copied ${label} into launcher libraries.`)
     }
 
     /**
