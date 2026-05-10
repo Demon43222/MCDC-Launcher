@@ -59,13 +59,9 @@ if(!isDev){
                 updateDownloadProgress(info)
                 break
             case 'update-downloaded':
-                loggerAutoUpdater.info('Update ' + info.version + ' ready to be installed.')
-                settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.installNowButton'), false, () => {
-                    if(!isDev){
-                        ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
-                    }
-                })
-                showUpdateInstallPrompt(info)
+                loggerAutoUpdater.info('Update ' + info.version + ' downloaded. Installing automatically.')
+                settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.installingButton'), true)
+                installDownloadedUpdate(info)
                 break
             case 'update-not-available':
                 loggerAutoUpdater.info('No new update found.')
@@ -211,32 +207,27 @@ function showUpdateAvailablePrompt(info){
     toggleOverlay(true, true)
 }
 
-function showUpdateInstallPrompt(info){
+function installDownloadedUpdate(info){
     showUpdateUI(info)
     document.getElementById('overlayAcknowledge').disabled = false
-    if(updateInstallPromptVisible || (isOverlayVisible() && !updateDownloadVisible)){
+    if(updateInstallPromptVisible){
         return
     }
     updateDownloadVisible = false
     updateInstallPromptVisible = true
     setOverlayContent(
-        Lang.queryJS('uicore.autoUpdate.readyTitle'),
-        Lang.queryJS('uicore.autoUpdate.readyMessage', { version: info.version }),
-        Lang.queryJS('uicore.autoUpdate.installNowButton'),
-        Lang.queryJS('uicore.autoUpdate.laterButton')
+        Lang.queryJS('uicore.autoUpdate.installingTitle'),
+        Lang.queryJS('uicore.autoUpdate.installingMessage', { version: info.version }),
+        Lang.queryJS('uicore.autoUpdate.installingButton')
     )
-    setOverlayHandler(() => {
-        updateInstallPromptVisible = false
-        toggleOverlay(false)
+    setOverlayHandler(() => {})
+    document.getElementById('overlayAcknowledge').disabled = true
+    toggleOverlay(true, false)
+    setTimeout(() => {
         if(!isDev){
             ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
         }
-    })
-    setDismissHandler(() => {
-        updateInstallPromptVisible = false
-        toggleOverlay(false)
-    })
-    toggleOverlay(true, true)
+    }, 1200)
 }
 
 /* jQuery Example
