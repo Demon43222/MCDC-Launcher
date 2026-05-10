@@ -39,6 +39,7 @@ webFrame.setVisualZoomLevelLimits(1, 1)
 let updateCheckListener
 let updatePromptVisible = false
 let updateInstallPromptVisible = false
+let updateDownloadVisible = false
 if(!isDev){
     ipcRenderer.on('autoUpdateNotification', (event, arg, info) => {
         switch(arg){
@@ -50,13 +51,16 @@ if(!isDev){
                 loggerAutoUpdater.info('New update available', info.version)
                 populateSettingsUpdateInformation(info)
                 settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.downloadNowButton'), false, () => {
-                    ipcRenderer.send('autoUpdateAction', 'downloadUpdate')
-                    settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.downloadingButton'), true)
+                    startUpdateDownload()
                 })
                 showUpdateAvailablePrompt(info)
                 break
+            case 'download-progress':
+                updateDownloadProgress(info)
+                break
             case 'update-downloaded':
                 loggerAutoUpdater.info('Update ' + info.version + ' ready to be installed.')
+                updateDownloadVisible = false
                 settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.installNowButton'), false, () => {
                     if(!isDev){
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
@@ -75,6 +79,18 @@ if(!isDev){
                 ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
                 break
             case 'realerror':
+                if(updateDownloadVisible){
+                    setOverlayContent(
+                        Lang.queryJS('uicore.autoUpdate.downloadErrorTitle'),
+                        Lang.queryJS('uicore.autoUpdate.downloadErrorMessage'),
+                        Lang.queryJS('uicore.autoUpdate.closeButton')
+                    )
+                    setOverlayHandler(() => {
+                        toggleOverlay(false)
+                    })
+                    document.getElementById('overlayAcknowledge').disabled = false
+                }
+                updateDownloadVisible = false
                 if(info != null && info.code != null){
                     if(info.code === 'ERR_UPDATER_INVALID_RELEASE_FEED'){
                         loggerAutoUpdater.info('No suitable releases found.')
@@ -114,11 +130,71 @@ function showUpdateUI(info){
     }
 }
 
+function formatUpdateBytes(bytes){
+    if(!Number.isFinite(bytes) || bytes <= 0){
+        return '0 MB'
+    }
+    return `${(bytes / 1024 / 1024).toFixed(1)} MB`
+}
+
+function renderUpdateDownloadMessage(percent = 0, transferred = 0, total = 0, bytesPerSecond = 0){
+    const safePercent = Math.max(0, Math.min(100, Number(percent) || 0))
+    const transferredText = formatUpdateBytes(transferred)
+    const totalText = formatUpdateBytes(total)
+    const speedText = formatUpdateBytes(bytesPerSecond) + '/s'
+
+    return `
+        <div class="updateDownloadOverlay">
+            <span>${Lang.queryJS('uicore.autoUpdate.downloadingMessage')}</span>
+            <div class="updateDownloadProgressFrame">
+                <div class="updateDownloadProgressBar" style="width: ${safePercent.toFixed(1)}%;"></div>
+            </div>
+            <div class="updateDownloadProgressMeta">
+                <span>${safePercent.toFixed(0)}%</span>
+                <span>${transferredText} / ${totalText}</span>
+                <span>${speedText}</span>
+            </div>
+        </div>
+    `
+}
+
+function showUpdateDownloadProgress(){
+    updatePromptVisible = false
+    updateDownloadVisible = true
+    setOverlayContent(
+        Lang.queryJS('uicore.autoUpdate.downloadingTitle'),
+        renderUpdateDownloadMessage(),
+        Lang.queryJS('uicore.autoUpdate.downloadingButton')
+    )
+    setOverlayHandler(() => {})
+    document.getElementById('overlayAcknowledge').disabled = true
+    toggleOverlay(true, false)
+}
+
+function startUpdateDownload(){
+    showUpdateDownloadProgress()
+    ipcRenderer.send('autoUpdateAction', 'downloadUpdate')
+    settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.downloadingButton'), true)
+}
+
+function updateDownloadProgress(progress){
+    if(!updateDownloadVisible){
+        showUpdateDownloadProgress()
+    }
+    document.getElementById('overlayDesc').innerHTML = renderUpdateDownloadMessage(
+        progress?.percent,
+        progress?.transferred,
+        progress?.total,
+        progress?.bytesPerSecond
+    )
+}
+
 function showUpdateAvailablePrompt(info){
     showUpdateUI(info)
     if(updatePromptVisible || isOverlayVisible()){
         return
     }
+    document.getElementById('overlayAcknowledge').disabled = false
     updatePromptVisible = true
     setOverlayContent(
         Lang.queryJS('uicore.autoUpdate.availableTitle'),
@@ -127,10 +203,7 @@ function showUpdateAvailablePrompt(info){
         Lang.queryJS('uicore.autoUpdate.laterButton')
     )
     setOverlayHandler(() => {
-        updatePromptVisible = false
-        toggleOverlay(false)
-        ipcRenderer.send('autoUpdateAction', 'downloadUpdate')
-        settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.downloadingButton'), true)
+        startUpdateDownload()
     })
     setDismissHandler(() => {
         updatePromptVisible = false
@@ -141,6 +214,7 @@ function showUpdateAvailablePrompt(info){
 
 function showUpdateInstallPrompt(info){
     showUpdateUI(info)
+    document.getElementById('overlayAcknowledge').disabled = false
     if(updateInstallPromptVisible || isOverlayVisible()){
         return
     }

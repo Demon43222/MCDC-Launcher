@@ -3316,6 +3316,39 @@ input:checked + .toggleSwitchSlider:before {
     -webkit-user-select: initial;
 }
 
+.updateDownloadOverlay {
+    width: 280px;
+}
+
+.updateDownloadProgressFrame {
+    position: relative;
+    width: 100%;
+    height: 8px;
+    margin: 14px 0px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-sizing: border-box;
+}
+
+.updateDownloadProgressBar {
+    height: 100%;
+    width: 0%;
+    background: #ffffff;
+    transition: width 0.2s ease;
+}
+
+.updateDownloadProgressMeta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 10px;
+}
+
+.updateDownloadProgressMeta span {
+    min-width: 0;
+    white-space: nowrap;
+}
+
 /* Div which contains action buttons. */
 #overlayActionContainer {
     display: flex;

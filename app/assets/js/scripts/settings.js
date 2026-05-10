@@ -1934,8 +1934,12 @@ function populateSettingsUpdateInformation(data){
         populateVersionInformation(data.version, settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
         settingsUpdateButtonStatus(Lang.queryJS('settings.updates.downloadButton'), false, () => {
             if(!isDev){
-                ipcRenderer.send('autoUpdateAction', 'downloadUpdate')
-                settingsUpdateButtonStatus(Lang.queryJS('settings.updates.downloadingButton'), true)
+                if(typeof startUpdateDownload === 'function'){
+                    startUpdateDownload()
+                } else {
+                    ipcRenderer.send('autoUpdateAction', 'downloadUpdate')
+                    settingsUpdateButtonStatus(Lang.queryJS('settings.updates.downloadingButton'), true)
+                }
             }
         })
     } else {
