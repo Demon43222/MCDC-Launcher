@@ -57,4 +57,4 @@ publish:
   repo: 'MCDC-Launcher'
   vPrefixedTagName: true
   publishAutoUpdate: true
-  releaseType: 'prerelease'
+  releaseType: 'release'
