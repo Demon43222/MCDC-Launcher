@@ -8,7 +8,7 @@ const { DistroAPI }  = require('./distromanager')
 const LangLoader     = require('./langloader')
 const { LoggerUtil } = require('demciak-core')
 // eslint-disable-next-line no-unused-vars
-const { HeliosDistribution: MCDCDistribution } = require('demciak-core/common')
+const { MCDCDistribution } = require('demciak-core/common')
 
 const logger = LoggerUtil.getLogger('Preloader')
 

@@ -13,6 +13,15 @@ const { pathToFileURL }                 = require('url')
 const { AZURE_CLIENT_ID, MSFT_OPCODE, MSFT_REPLY_TYPE, MSFT_ERROR, SHELL_OPCODE } = require('./app/assets/js/ipcconstants')
 const LangLoader                        = require('./app/assets/js/langloader')
 
+function ignoreBrokenPipe(err) {
+    if(err?.code !== 'EPIPE') {
+        throw err
+    }
+}
+
+process.stdout?.on('error', ignoreBrokenPipe)
+process.stderr?.on('error', ignoreBrokenPipe)
+
 // Setup Lang
 LangLoader.setupLanguage()
 
@@ -145,8 +154,8 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
             let queryMap = {}
             
             new URL(uri).searchParams.forEach((v, k) => {
-                queryMap[k] = v;
-            });
+                queryMap[k] = v
+            })
 
             ipcEvent.reply(MSFT_OPCODE.REPLY_LOGIN, MSFT_REPLY_TYPE.SUCCESS, queryMap, msftAuthViewSuccess)
 
@@ -235,6 +244,16 @@ function createWindow() {
     })
     remoteMain.enable(win.webContents)
 
+    win.webContents.on('did-fail-load', (_event, errorCode, errorDescription, validatedURL) => {
+        console.error('Main window failed to load:', errorCode, errorDescription, validatedURL)
+    })
+    win.webContents.on('render-process-gone', (_event, details) => {
+        console.error('Main window renderer gone:', details)
+    })
+    win.webContents.on('console-message', (_event, level, message, line, sourceId) => {
+        console.log(`[Renderer:${level}] ${sourceId}:${line} ${message}`)
+    })
+
     const data = {
         bkid: Math.floor((Math.random() * fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds')).length)),
         lang: (str, placeHolders) => LangLoader.queryEJS(str, placeHolders)
@@ -243,9 +262,24 @@ function createWindow() {
 
     win.loadURL(pathToFileURL(path.join(__dirname, 'app', 'app.ejs')).toString())
 
-    /*win.once('ready-to-show', () => {
+    win.once('ready-to-show', () => {
         win.show()
-    })*/
+        win.focus()
+    })
+
+    win.webContents.once('did-finish-load', () => {
+        win.show()
+        win.center()
+        win.focus()
+    })
+
+    setTimeout(() => {
+        if(win != null && !win.isDestroyed()) {
+            win.show()
+            win.center()
+            win.focus()
+        }
+    }, 3000)
 
     win.removeMenu()
 

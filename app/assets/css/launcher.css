@@ -1343,6 +1343,138 @@ body, button {
     color: rgba(255, 255, 255, .95);
     margin-top: 5px;
 }
+
+.settingsToolContainer {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    padding: 20px 0px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.50);
+}
+
+.settingsToolActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.settingsToolButton {
+    border: 0px;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 8px 10px;
+    cursor: pointer;
+    background: rgba(126, 126, 126, 0.57);
+    transition: 0.25s ease;
+}
+
+.settingsToolButton:hover,
+.settingsToolButton:focus {
+    text-shadow: 0px 0px 20px white;
+}
+
+#settingsServiceStatus {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.settingsServiceStatusItem {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.settingsServiceStatusItem[online] span:last-child {
+    color: #43c628;
+    text-shadow: 0px 0px 20px #43c628;
+}
+
+#settingsDiagnosticsPanel {
+    margin-top: 12px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 3px;
+}
+
+#settingsDiagnosticsSummary {
+    font-size: 11px;
+    font-family: 'Avenir Medium';
+    color: rgba(255, 255, 255, 0.92);
+}
+
+#settingsDiagnosticsSummary[state=ok] {
+    color: #43c628;
+}
+
+#settingsDiagnosticsSummary[state=warn] {
+    color: #f0c84b;
+}
+
+#settingsDiagnosticsSummary[state=error] {
+    color: #ff6a5f;
+}
+
+#settingsDiagnosticsList {
+    display: grid;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.settingsDiagnosticsItem {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr);
+    column-gap: 8px;
+    row-gap: 2px;
+    align-items: start;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.settingsDiagnosticsItem::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    margin-top: 3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.25);
+}
+
+.settingsDiagnosticsItem[state=ok]::before {
+    background: #43c628;
+    box-shadow: 0px 0px 10px rgba(67, 198, 40, 0.55);
+}
+
+.settingsDiagnosticsItem[state=warn]::before {
+    background: #f0c84b;
+    box-shadow: 0px 0px 10px rgba(240, 200, 75, 0.45);
+}
+
+.settingsDiagnosticsItem[state=error]::before {
+    background: #ff6a5f;
+    box-shadow: 0px 0px 10px rgba(255, 106, 95, 0.55);
+}
+
+.settingsDiagnosticsItemTitle,
+.settingsDiagnosticsItemDetail {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.settingsDiagnosticsItemDetail {
+    grid-column: 2;
+    color: rgba(255, 255, 255, 0.68);
+}
 .settingsDivider {
     height: 1px;
     width: 75%;
@@ -2827,7 +2959,7 @@ input:checked + .toggleSwitchSlider:before {
     align-items: center;
     justify-content: flex-end;
     gap: 8px;
-    min-height: 28px;
+    min-height: 34px;
     padding: 4px 8px;
     background: rgba(0, 0, 0, 0.24);
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -2860,6 +2992,30 @@ input:checked + .toggleSwitchSlider:before {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.landingServerOptionDetails {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.landingServerOptionDescription {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 8px;
+    font-weight: 700;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.landingServerOptionBadge {
+    flex: 0 0 auto;
+    color: #43c628;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 1px;
 }
 
 .landingServerOptionVersion {

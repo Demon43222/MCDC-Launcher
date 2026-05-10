@@ -208,8 +208,14 @@ function populateLandingServerList(distro) {
         const id = escapeLandingServerText(serv.rawServer.id)
         const name = escapeLandingServerText(serv.rawServer.name)
         const version = escapeLandingServerText(serv.rawServer.minecraftVersion)
+        const description = escapeLandingServerText(serv.rawServer.description || serv.rawServer.version || '')
+        const badge = serv.rawServer.mainServer ? `<span class="landingServerOptionBadge">${Lang.queryJS('landing.serverList.recommended')}</span>` : ''
         htmlString += `<button class="landingServerOption" servid="${id}" ${serv.rawServer.id === selectedId ? 'selected' : ''}>
-            <span class="landingServerOptionName">${name}</span>
+            <span class="landingServerOptionDetails">
+                <span class="landingServerOptionName">${name}</span>
+                <span class="landingServerOptionDescription">${description}</span>
+            </span>
+            ${badge}
             <span class="landingServerOptionVersion">${version}</span>
         </button>`
     }
@@ -373,6 +379,32 @@ function showLaunchFailure(title, desc){
     setOverlayHandler(null)
     toggleOverlay(true)
     toggleLaunchArea(false)
+}
+
+function classifyLaunchError(err, fallback) {
+    const message = `${err?.displayable || err?.message || err || ''}`
+    const lower = message.toLowerCase()
+
+    if(lower.includes('enotfound') || lower.includes('eai_again') || lower.includes('dns')) {
+        return Lang.queryJS('landing.errors.dns')
+    }
+    if(lower.includes('etimedout') || lower.includes('timeout')) {
+        return Lang.queryJS('landing.errors.timeout')
+    }
+    if(lower.includes('econnrefused') || lower.includes('econnreset') || lower.includes('socket hang up')) {
+        return Lang.queryJS('landing.errors.connection')
+    }
+    if(lower.includes('404') || lower.includes('not found')) {
+        return Lang.queryJS('landing.errors.notFound')
+    }
+    if(lower.includes('md5') || lower.includes('hash') || lower.includes('integrity')) {
+        return Lang.queryJS('landing.errors.integrity')
+    }
+    if(lower.includes('server.json') || lower.includes('distribution')) {
+        return Lang.queryJS('landing.errors.distro')
+    }
+
+    return fallback
 }
 
 /* System (Java) Scan */
@@ -548,7 +580,7 @@ async function dlAsync(login = true) {
 
     const loggerLaunchSuite = LoggerUtil.getLogger('LaunchSuite')
 
-    setLaunchDetails(Lang.queryJS('landing.dlAsync.loadingServerInfo'))
+    setLaunchDetails(Lang.queryJS(login ? 'landing.dlAsync.loadingServerInfo' : 'landing.repair.loadingServerInfo'))
 
     let distro
 
@@ -557,7 +589,7 @@ async function dlAsync(login = true) {
         onDistroRefresh(distro)
     } catch(err) {
         loggerLaunchSuite.error('Unable to refresh distribution index.', err)
-        showLaunchFailure(Lang.queryJS('landing.dlAsync.fatalError'), Lang.queryJS('landing.dlAsync.unableToLoadDistributionIndex'))
+        showLaunchFailure(Lang.queryJS('landing.dlAsync.fatalError'), classifyLaunchError(err, Lang.queryJS('landing.dlAsync.unableToLoadDistributionIndex')))
         return
     }
 
@@ -570,7 +602,7 @@ async function dlAsync(login = true) {
         }
     }
 
-    setLaunchDetails(Lang.queryJS('landing.dlAsync.pleaseWait'))
+    setLaunchDetails(Lang.queryJS(login ? 'landing.dlAsync.pleaseWait' : 'landing.repair.pleaseWait'))
     toggleLaunchArea(true)
     setLaunchPercentage(0, 100)
 
@@ -596,7 +628,7 @@ async function dlAsync(login = true) {
     })
 
     loggerLaunchSuite.info('Validating files.')
-    setLaunchDetails(Lang.queryJS('landing.dlAsync.validatingFileIntegrity'))
+    setLaunchDetails(Lang.queryJS(login ? 'landing.dlAsync.validatingFileIntegrity' : 'landing.repair.validatingFileIntegrity'))
     let invalidFileCount = 0
     try {
         invalidFileCount = await fullRepairModule.verifyFiles(percent => {
@@ -605,14 +637,14 @@ async function dlAsync(login = true) {
         setLaunchPercentage(100)
     } catch (err) {
         loggerLaunchSuite.error('Error during file validation.')
-        showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringFileVerificationTitle'), err.displayable || Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
+        showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringFileVerificationTitle'), classifyLaunchError(err, err.displayable || Lang.queryJS('landing.dlAsync.seeConsoleForDetails')))
         return
     }
     
 
     if(invalidFileCount > 0) {
         loggerLaunchSuite.info('Downloading files.')
-        setLaunchDetails(Lang.queryJS('landing.dlAsync.downloadingFiles'))
+        setLaunchDetails(Lang.queryJS(login ? 'landing.dlAsync.downloadingFiles' : 'landing.repair.downloadingFiles', { count: invalidFileCount }))
         setLaunchPercentage(0)
         try {
             await fullRepairModule.download(percent => {
@@ -621,7 +653,7 @@ async function dlAsync(login = true) {
             setDownloadPercentage(100)
         } catch(err) {
             loggerLaunchSuite.error('Error during file download.')
-            showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringFileDownloadTitle'), err.displayable || Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
+            showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringFileDownloadTitle'), classifyLaunchError(err, err.displayable || Lang.queryJS('landing.dlAsync.seeConsoleForDetails')))
             return
         }
     } else {
@@ -632,6 +664,16 @@ async function dlAsync(login = true) {
     remote.getCurrentWindow().setProgressBar(-1)
 
     fullRepairModule.destroyReceiver()
+
+    if(!login) {
+        setLaunchDetails(Lang.queryJS('landing.repair.done'))
+        setLaunchPercentage(100)
+        setTimeout(() => {
+            remote.getCurrentWindow().setProgressBar(-1)
+            toggleLaunchArea(false)
+        }, 1200)
+        return
+    }
 
     setLaunchDetails(Lang.queryJS('landing.dlAsync.preparingToLaunch'))
 

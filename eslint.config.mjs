@@ -5,7 +5,12 @@ import globals from 'globals';
 
 export default defineConfig(
   {
-    ignores: ['**/dist/**', 'node_modules', 'eslint.config.mjs'],
+    ignores: [
+      '**/.codex-tools/**',
+      '**/dist/**',
+      '**/node_modules/**',
+      'eslint.config.mjs'
+    ],
   },
   js.configs.recommended,
   {
@@ -33,7 +38,7 @@ export default defineConfig(
           requireLast: false
         }
       }],
-      '@stylistic/linebreak-style': ['error', 'windows'],
+      '@stylistic/linebreak-style': 'off',
       'no-var': ['error'],
       'no-control-regex': 'off',
       'no-unused-vars': ['error', {

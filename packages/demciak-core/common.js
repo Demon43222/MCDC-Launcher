@@ -52,6 +52,7 @@ class DistributionAPI extends heliosCommon.DistributionAPI {
 
 module.exports = {
     ...heliosCommon,
+    MCDCDistribution: heliosCommon.HeliosDistribution,
     DistributionAPI,
     normalizeDistribution
 }

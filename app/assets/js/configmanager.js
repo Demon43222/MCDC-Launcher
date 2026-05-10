@@ -60,13 +60,31 @@ exports.getAbsoluteMaxRAM = function(_ram){
 }
 
 function resolveSelectedRAM(ram) {
+    const minimumRecommended = 6144
     if(ram?.recommended != null) {
-        return `${ram.recommended}M`
+        return `${Math.max(ram.recommended, minimumRecommended)}M`
     } else {
         // Legacy behavior
         const mem = os.totalmem()
         return mem >= (8*1073741824) ? '6G' : (mem >= (6*1073741824) ? '3G' : '2G')
     }
+}
+
+function ramToMB(ram) {
+    if(typeof ram !== 'string') {
+        return 0
+    }
+
+    const value = Number.parseFloat(ram)
+    if(Number.isNaN(value)) {
+        return 0
+    }
+
+    return ram.endsWith('G') ? value*1024 : value
+}
+
+function compareRAM(left, right) {
+    return ramToMB(left) - ramToMB(right)
 }
 
 /**
@@ -503,6 +521,16 @@ function defaultJavaConfig17(ram) {
 exports.ensureJavaConfig = function(serverid, effectiveJavaOptions, ram) {
     if(!Object.prototype.hasOwnProperty.call(config.javaConfig, serverid)) {
         config.javaConfig[serverid] = defaultJavaConfig(effectiveJavaOptions, ram)
+    } else {
+        const defaultRAM = resolveSelectedRAM(ram)
+        const currentMin = config.javaConfig[serverid].minRAM
+        const currentMax = config.javaConfig[serverid].maxRAM
+        if(compareRAM(currentMin, defaultRAM) < 0) {
+            config.javaConfig[serverid].minRAM = defaultRAM
+        }
+        if(compareRAM(currentMax, defaultRAM) < 0) {
+            config.javaConfig[serverid].maxRAM = defaultRAM
+        }
     }
 }
 

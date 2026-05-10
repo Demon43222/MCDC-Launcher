@@ -4,7 +4,7 @@ Repozytorium launchera Minecraft przygotowanego pod serwer `MCDC.pl`.
 
 ## Status
 
-Aktualny etap: `v0.1`
+Aktualny etap: `v0.2.0-beta.1`
 
 ## Co zawiera
 
@@ -12,7 +12,8 @@ Aktualny etap: `v0.1`
 - logowanie offline z wyborem nicku,
 - wybór paczek/modpacków,
 - integrację z Discordem,
-- automatyczne pobieranie wymaganych plików i Javy.
+- automatyczne pobieranie wymaganych plików i Javy,
+- narzędzia serwisowe: naprawa plików, diagnostyka i status usług.
 
 ## Development
 
@@ -28,6 +29,12 @@ Uruchomienie:
 
 ```bash
 npm start
+```
+
+Walidacja pliku dystrybucji:
+
+```bash
+npm run validate:distro
 ```
 
 Budowanie:
