@@ -60,7 +60,6 @@ if(!isDev){
                 break
             case 'update-downloaded':
                 loggerAutoUpdater.info('Update ' + info.version + ' ready to be installed.')
-                updateDownloadVisible = false
                 settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.installNowButton'), false, () => {
                     if(!isDev){
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
@@ -215,9 +214,10 @@ function showUpdateAvailablePrompt(info){
 function showUpdateInstallPrompt(info){
     showUpdateUI(info)
     document.getElementById('overlayAcknowledge').disabled = false
-    if(updateInstallPromptVisible || isOverlayVisible()){
+    if(updateInstallPromptVisible || (isOverlayVisible() && !updateDownloadVisible)){
         return
     }
+    updateDownloadVisible = false
     updateInstallPromptVisible = true
     setOverlayContent(
         Lang.queryJS('uicore.autoUpdate.readyTitle'),
