@@ -37,6 +37,8 @@ webFrame.setVisualZoomLevelLimits(1, 1)
 
 // Initialize auto updates in production environments.
 let updateCheckListener
+let updatePromptVisible = false
+let updateInstallPromptVisible = false
 if(!isDev){
     ipcRenderer.on('autoUpdateNotification', (event, arg, info) => {
         switch(arg){
@@ -47,6 +49,11 @@ if(!isDev){
             case 'update-available':
                 loggerAutoUpdater.info('New update available', info.version)
                 populateSettingsUpdateInformation(info)
+                settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.downloadNowButton'), false, () => {
+                    ipcRenderer.send('autoUpdateAction', 'downloadUpdate')
+                    settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.downloadingButton'), true)
+                })
+                showUpdateAvailablePrompt(info)
                 break
             case 'update-downloaded':
                 loggerAutoUpdater.info('Update ' + info.version + ' ready to be installed.')
@@ -55,7 +62,7 @@ if(!isDev){
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
                     }
                 })
-                showUpdateUI(info)
+                showUpdateInstallPrompt(info)
                 break
             case 'update-not-available':
                 loggerAutoUpdater.info('No new update found.')
@@ -99,26 +106,63 @@ function changeAllowPrerelease(val){
 }
 
 function showUpdateUI(info){
-    //TODO Make this message a bit more informative `${info.version}`
     document.getElementById('image_seal_container').setAttribute('update', true)
     document.getElementById('image_seal_container').onclick = () => {
-        /*setOverlayContent('Update Available', 'A new update for the launcher is available. Would you like to install now?', 'Install', 'Later')
-        setOverlayHandler(() => {
-            if(!isDev){
-                ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
-            } else {
-                console.error('Cannot install updates in development environment.')
-                toggleOverlay(false)
-            }
-        })
-        setDismissHandler(() => {
-            toggleOverlay(false)
-        })
-        toggleOverlay(true, true)*/
         switchView(getCurrentView(), VIEWS.settings, 500, 500, () => {
             settingsNavItemListener(document.getElementById('settingsNavUpdate'), false)
         })
     }
+}
+
+function showUpdateAvailablePrompt(info){
+    showUpdateUI(info)
+    if(updatePromptVisible || isOverlayVisible()){
+        return
+    }
+    updatePromptVisible = true
+    setOverlayContent(
+        Lang.queryJS('uicore.autoUpdate.availableTitle'),
+        Lang.queryJS('uicore.autoUpdate.availableMessage', { version: info.version }),
+        Lang.queryJS('uicore.autoUpdate.downloadNowButton'),
+        Lang.queryJS('uicore.autoUpdate.laterButton')
+    )
+    setOverlayHandler(() => {
+        updatePromptVisible = false
+        toggleOverlay(false)
+        ipcRenderer.send('autoUpdateAction', 'downloadUpdate')
+        settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.downloadingButton'), true)
+    })
+    setDismissHandler(() => {
+        updatePromptVisible = false
+        toggleOverlay(false)
+    })
+    toggleOverlay(true, true)
+}
+
+function showUpdateInstallPrompt(info){
+    showUpdateUI(info)
+    if(updateInstallPromptVisible || isOverlayVisible()){
+        return
+    }
+    updateInstallPromptVisible = true
+    setOverlayContent(
+        Lang.queryJS('uicore.autoUpdate.readyTitle'),
+        Lang.queryJS('uicore.autoUpdate.readyMessage', { version: info.version }),
+        Lang.queryJS('uicore.autoUpdate.installNowButton'),
+        Lang.queryJS('uicore.autoUpdate.laterButton')
+    )
+    setOverlayHandler(() => {
+        updateInstallPromptVisible = false
+        toggleOverlay(false)
+        if(!isDev){
+            ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
+        }
+    })
+    setDismissHandler(() => {
+        updateInstallPromptVisible = false
+        toggleOverlay(false)
+    })
+    toggleOverlay(true, true)
 }
 
 /* jQuery Example

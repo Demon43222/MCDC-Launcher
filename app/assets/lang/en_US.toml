@@ -324,6 +324,7 @@ stableReleaseTitle = "Wersja stabilna"
 [js.settings.updates]
 newReleaseTitle = "Dostępna nowa wersja"
 newPreReleaseTitle = "Dostępna nowa wersja przedpremierowa"
+downloadButton = "Pobierz aktualizację"
 downloadingButton = "Pobieranie..."
 latestVersionTitle = "Używasz najnowszej wersji"
 checkForUpdatesButton = "Sprawdź aktualizacje"
@@ -343,8 +344,15 @@ selectAnotherAccountButton = "Wybierz inne konto"
 
 [js.uicore.autoUpdate]
 checkingForUpdateButton = "Sprawdzanie aktualizacji..."
+availableTitle = "Dostępna aktualizacja"
+availableMessage = "Dostępna jest wersja {version}. Czy chcesz pobrać ją teraz?"
+downloadNowButton = "Pobierz teraz"
+downloadingButton = "Pobieranie..."
+readyTitle = "Aktualizacja gotowa"
+readyMessage = "Wersja {version} została pobrana. Czy zainstalować ją teraz?"
 installNowButton = "Zainstaluj teraz"
 checkForUpdatesButton = "Sprawdź aktualizacje"
+laterButton = "Później"
 
 [js.auth.microsoft.error]
 noProfileTitle = "Błąd logowania:<br>Profil nie jest skonfigurowany"

@@ -1932,7 +1932,12 @@ function populateSettingsUpdateInformation(data){
         settingsUpdateChangelogTitle.innerHTML = data.releaseName
         settingsUpdateChangelogText.innerHTML = data.releaseNotes
         populateVersionInformation(data.version, settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
-        settingsUpdateButtonStatus(Lang.queryJS('settings.updates.downloadingButton'), true)
+        settingsUpdateButtonStatus(Lang.queryJS('settings.updates.downloadButton'), false, () => {
+            if(!isDev){
+                ipcRenderer.send('autoUpdateAction', 'downloadUpdate')
+                settingsUpdateButtonStatus(Lang.queryJS('settings.updates.downloadingButton'), true)
+            }
+        })
     } else {
         settingsUpdateTitle.innerHTML = Lang.queryJS('settings.updates.latestVersionTitle')
         settingsUpdateChangelogCont.style.display = 'none'
